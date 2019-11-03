@@ -7,10 +7,10 @@ namespace IneorBusiness.Models
 {
     public class Book
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string author { get; set; }
-        public double price { get; set; }
-        public DateTime date_published { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public double Price { get; set; }
+        public DateTime DatePublished { get; set; }
     }
 }

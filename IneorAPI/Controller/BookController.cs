@@ -1,4 +1,7 @@
-﻿using IneorBusiness.Models;
+﻿using IneorBusiness.Interfaces;
+using IneorBusiness.Models;
+using IneorBusiness.Service;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,21 +12,17 @@ namespace IneorAPI.Controller
     [ApiController]
     public class BookController : ControllerBase
     {
+        private readonly IBookService _bookService;
 
-        [HttpPost("GetBooks")]
+        public BookController(IBookService bookService)
+        {
+            this._bookService = bookService;
+        }
+
+        [HttpGet("GetBooks")]
         public ActionResult<IEnumerable<Book>> GetBooks()
         {
-            List<Book> data = new List<Book>()
-            {
-                new Book
-                {
-                    author = "a",
-                    date_published = DateTime.Now,
-                    id = 1,
-                    name = "a",
-                    price = 1
-                }
-            };
+            var data = _bookService.GetBooks();
 
             return data;
         }
