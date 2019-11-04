@@ -26,6 +26,37 @@ namespace IneorAPI.Controller
 
             return data;
         }
-    
+
+        [HttpPost("GetBookById")]
+        public ActionResult<Book> GetBookById([FromBody]int Id)
+        {
+            var data = _bookService.GetBookById(Id);
+
+            return data;
+        }
+
+        [HttpPost("AddBook")]
+        public ActionResult<bool> AddBook(Book data)
+        {
+            var result = _bookService.AddBook(data);
+
+            return result;
+        }
+
+        [HttpPost("EditBook")]
+        public ActionResult<bool> EditBook(Book data)
+        {
+            var result = _bookService.EditBook(data);
+
+            return result;
+        }
+
+        [HttpPost("DeleteBook")]
+        public ActionResult<bool> DeleteBook([FromBody]int Id)
+        {
+            var result = _bookService.DeleteBook(Id);
+
+            return result;
+        }
     }
 }

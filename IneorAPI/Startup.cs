@@ -28,16 +28,19 @@ namespace IneorAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson();
 
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 
-                    builder.WithOrigins(Configuration.GetSection("AllowedCors").ToString())
+                    builder.WithOrigins(Configuration.GetSection("AllowedCors").Value)
                     .WithMethods("GET")
                     .WithMethods("POST")
+                    .AllowAnyHeader()
                 );
             });
 
@@ -53,6 +56,8 @@ namespace IneorAPI
             //DI
             services.AddScoped<IBookService, BookService>();
             services.AddTransient<BookRepository, BookRepository>();
+
+            services.AddMvcCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,12 +70,12 @@ namespace IneorAPI
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseCors(MyAllowSpecificOrigins);
         }
     }
 }
