@@ -9,9 +9,9 @@ namespace IneorBusiness.Service
 {
     public class BookService : IBookService
     {
-        readonly BookRepository _bookRepository;
+        readonly IBookRepository _bookRepository;
 
-        public BookService(BookRepository bookRepository)
+        public BookService(IBookRepository bookRepository)
         {
             this._bookRepository = bookRepository;
         }
@@ -30,23 +30,9 @@ namespace IneorBusiness.Service
             return result;
         }
 
-        public bool AddBook(Book data)
+        public bool InsertBook(Book data)
         {
-            //Data Validation
-            if(data.Name == null)
-            {
-                return false;
-            }
-            if (data.Author == null)
-                return false;
-
-            if (data.DatePublished == null)
-                return false;
-
-            if (!data.Price.HasValue)
-                return false;
-
-            var result = _bookRepository.AddBook(data);
+            var result = _bookRepository.InsertBook(data);
 
             if (result == 1)
                 return true;
@@ -56,20 +42,6 @@ namespace IneorBusiness.Service
 
         public bool EditBook(Book data)
         {
-            //Data Validation
-            if (data.Name == null)
-            {
-                return false;
-            }
-            if (data.Author == null)
-                return false;
-
-            if (data.DatePublished == null)
-                return false;
-
-            if (!data.Price.HasValue)
-                return false;
-
             var result = _bookRepository.EditBook(data);
 
             if (result == 1)
@@ -86,5 +58,7 @@ namespace IneorBusiness.Service
             else
                 return false;
         }
+        
+
     }
 }

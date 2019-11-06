@@ -20,4 +20,8 @@
     <ProjectReference Include="..\IneorBusiness\IneorBusiness.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+
 </Project>

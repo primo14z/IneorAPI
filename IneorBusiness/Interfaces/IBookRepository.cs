@@ -5,12 +5,12 @@ using System.Text;
 
 namespace IneorBusiness.Interfaces
 {
-    public interface IBookService
+    public interface IBookRepository
     {
         List<Book> GetBooks();
-        bool InsertBook(Book data);
-        bool EditBook(Book data);
-        bool DeleteBook(int data);
         Book GetBookById(int Id);
+        int InsertBook(Book data);
+        int EditBook(Book data);
+        int DeleteBook(int Id);
     }
 }

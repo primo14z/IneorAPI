@@ -55,7 +55,7 @@ namespace IneorAPI
 
             //DI
             services.AddScoped<IBookService, BookService>();
-            services.AddTransient<BookRepository, BookRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
 
             services.AddMvcCore();
         }

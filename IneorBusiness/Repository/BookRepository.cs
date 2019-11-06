@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using IneorBusiness.Infrastructure;
+using IneorBusiness.Interfaces;
 using IneorBusiness.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace IneorBusiness.Repository
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         readonly IDbConnection _db;
         public BookRepository(SqlConnectionDapper db)
@@ -39,7 +40,7 @@ namespace IneorBusiness.Repository
             return result;
         }
 
-        public int AddBook(Book data)
+        public int InsertBook(Book data)
         {
             var query = @"INSERT INTO Book
                         (Author, Price, DatePublished,Name)
@@ -48,7 +49,7 @@ namespace IneorBusiness.Repository
             var result = _db.Execute(query, new
             {
                 Author = data.Author,
-                Price = data.Price.Value,
+                Price = data.Price,
                 DatePublished = data.DatePublished,
                 Name = data.Name
             });
@@ -65,7 +66,7 @@ namespace IneorBusiness.Repository
             var result = _db.Execute(query, new
             {
                 Author = data.Author,
-                Price = data.Price.Value,
+                Price = data.Price,
                 DatePublished = data.DatePublished,
                 Name = data.Name,
                 Id = data.Id

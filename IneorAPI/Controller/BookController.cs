@@ -38,7 +38,7 @@ namespace IneorAPI.Controller
         [HttpPost("AddBook")]
         public ActionResult<bool> AddBook(Book data)
         {
-            var result = _bookService.AddBook(data);
+            var result = _bookService.InsertBook(data);
 
             return result;
         }
