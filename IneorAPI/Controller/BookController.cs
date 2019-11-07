@@ -58,5 +58,13 @@ namespace IneorAPI.Controller
 
             return result;
         }
+
+        [HttpPost("GetBookByFilter")]
+        public ActionResult<List<Book>> GetBookByFilter(FilterModel data)
+        {
+            var result = _bookService.GetBookByFilter(data.key);
+
+            return result;
+        }
     }
 }

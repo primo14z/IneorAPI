@@ -3,6 +3,7 @@ using IneorBusiness.Models;
 using IneorBusiness.Repository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace IneorBusiness.Service
@@ -59,6 +60,11 @@ namespace IneorBusiness.Service
                 return false;
         }
         
+        public List<Book> GetBookByFilter(string key)
+        {
+            var result = _bookRepository.GetBookByFilter(key);
 
+            return result;
+        }
     }
 }

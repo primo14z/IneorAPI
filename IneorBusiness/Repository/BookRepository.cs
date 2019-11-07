@@ -87,5 +87,19 @@ namespace IneorBusiness.Repository
 
             return result;
         }
+
+        public List<Book> GetBookByFilter(string key)
+        {
+            var query = @"SELECT * from Book
+                            WHERE Name like CONCAT('%',@key,'%')
+                                OR Author like CONCAT('%',@key,'%')";
+
+            var result = _db.Query<Book>(query, new
+            {
+                key = key
+            }).ToList();
+
+            return result;
+        }
     }
 }

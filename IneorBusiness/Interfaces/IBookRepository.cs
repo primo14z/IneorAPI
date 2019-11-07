@@ -12,5 +12,6 @@ namespace IneorBusiness.Interfaces
         int InsertBook(Book data);
         int EditBook(Book data);
         int DeleteBook(int Id);
+        List<Book> GetBookByFilter(string key);
     }
 }

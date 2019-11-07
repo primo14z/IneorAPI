@@ -12,5 +12,6 @@ namespace IneorBusiness.Interfaces
         bool EditBook(Book data);
         bool DeleteBook(int data);
         Book GetBookById(int Id);
+        List<Book> GetBookByFilter(string key);
     }
 }

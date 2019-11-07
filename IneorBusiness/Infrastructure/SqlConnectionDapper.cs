@@ -6,8 +6,6 @@ namespace IneorBusiness.Infrastructure
 {
     public class SqlConnectionDapper
     {
-
-
         private Dictionary<DatabaseEnum, string> _sqlConnectionStrings;
 
         public SqlConnectionDapper(Dictionary<DatabaseEnum, string> sqlConnectionStrings)
