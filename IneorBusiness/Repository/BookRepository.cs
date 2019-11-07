@@ -20,9 +20,31 @@ namespace IneorBusiness.Repository
 
         public List<Book> GetBooks()
         {
-            var query = @"Select * from Book";
+            var query = @"Select * FROM Book";
 
             var result = _db.Query<Book>(query).ToList();
+
+            return result;
+        }
+
+        public List<Book> FilterBooks(FilterModel filter)
+        {
+            var query = @"Select TOP(@pageSize) *
+                            From 
+                            (
+                                Select 
+                                  Row_Number() Over (Order By Id) As RowNum
+                                , *
+                                From Book
+                            ) t2
+                            Where RowNum BETWEEN @From AND @To";
+
+            var result = _db.Query<Book>(query, new
+            {
+                From = filter.pageIndex * filter.pageSize,
+                To = (filter.pageIndex + 1 ) * filter.pageSize,
+                pageSize = filter.pageSize
+            }).ToList();
 
             return result;
         }

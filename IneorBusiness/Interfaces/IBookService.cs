@@ -8,6 +8,7 @@ namespace IneorBusiness.Interfaces
     public interface IBookService
     {
         List<Book> GetBooks();
+        List<Book> FilterBooks(FilterModel filter);
         bool InsertBook(Book data);
         bool EditBook(Book data);
         bool DeleteBook(int data);

@@ -24,6 +24,13 @@ namespace IneorBusiness.Service
             return result;
         }
 
+        public List<Book> FilterBooks(FilterModel filter)
+        {
+            var result = _bookRepository.FilterBooks(filter);
+
+            return result;
+        }
+
         public Book GetBookById(int Id)
         {
             var result = _bookRepository.GetBookById(Id);

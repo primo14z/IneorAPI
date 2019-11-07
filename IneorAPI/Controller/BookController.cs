@@ -27,6 +27,14 @@ namespace IneorAPI.Controller
             return data;
         }
 
+        [HttpPost("FilterBooks")]
+        public ActionResult<IEnumerable<Book>> FilterBooks(FilterModel filter)
+        {
+            var data = _bookService.FilterBooks(filter);
+
+            return data;
+        }
+
         [HttpPost("GetBookById")]
         public ActionResult<Book> GetBookById([FromBody]int Id)
         {

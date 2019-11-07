@@ -8,6 +8,7 @@ namespace IneorBusiness.Interfaces
     public interface IBookRepository
     {
         List<Book> GetBooks();
+        List<Book> FilterBooks(FilterModel filter);
         Book GetBookById(int Id);
         int InsertBook(Book data);
         int EditBook(Book data);
