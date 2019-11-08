@@ -1,9 +1,6 @@
 ﻿using IneorBusiness.Interfaces;
 using IneorBusiness.Models;
-using IneorBusiness.Service;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
 namespace IneorAPI.Controller
@@ -30,49 +27,91 @@ namespace IneorAPI.Controller
         [HttpPost("FilterBooks")]
         public ActionResult<IEnumerable<Book>> FilterBooks(FilterModel filter)
         {
-            var data = _bookService.FilterBooks(filter);
+            try
+            {
+                var data = _bookService.FilterBooks(filter);
 
-            return data;
+                return data;
+            }
+           catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("GetBookById")]
         public ActionResult<Book> GetBookById([FromBody]int Id)
         {
-            var data = _bookService.GetBookById(Id);
+            try
+            {
+                var data = _bookService.GetBookById(Id);
 
-            return data;
+                return data;
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("AddBook")]
         public ActionResult<bool> AddBook(Book data)
         {
-            var result = _bookService.InsertBook(data);
+            try
+            {
+                var result = _bookService.InsertBook(data);
 
-            return result;
+                return result;
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("EditBook")]
         public ActionResult<bool> EditBook(Book data)
         {
-            var result = _bookService.EditBook(data);
+            try
+            {
+                var result = _bookService.EditBook(data);
 
-            return result;
+                return result;
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("DeleteBook")]
         public ActionResult<bool> DeleteBook([FromBody]int Id)
         {
-            var result = _bookService.DeleteBook(Id);
+            try
+            {
+                var result = _bookService.DeleteBook(Id);
 
-            return result;
+                return result;
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("GetBookByFilter")]
         public ActionResult<List<Book>> GetBookByFilter(FilterModel data)
         {
-            var result = _bookService.GetBookByFilter(data.key);
+            try
+            {
+                var result = _bookService.GetBookByFilter(data.key);
 
-            return result;
+                return result;
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -21,6 +21,20 @@ namespace IneorBusiness.Service
             return result;
         }
 
+        public List<Book> FilterBooks(FilterModel filter)
+        {
+            try
+            {
+                var result = _bookRepository.FilterBooks(filter);
+
+                return result;
+            }
+           catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
 
         public Book GetBookById(int Id)
         {
@@ -87,7 +101,7 @@ namespace IneorBusiness.Service
 
         }
 
-        public List<Book> FilterBooks(string key)
+        public List<Book> GetBookByFilter(string key)
         {
             try
             {
