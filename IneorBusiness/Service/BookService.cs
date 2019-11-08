@@ -1,10 +1,7 @@
 ﻿using IneorBusiness.Interfaces;
 using IneorBusiness.Models;
-using IneorBusiness.Repository;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 namespace IneorBusiness.Service
 {
@@ -24,54 +21,86 @@ namespace IneorBusiness.Service
             return result;
         }
 
-        public List<Book> FilterBooks(FilterModel filter)
-        {
-            var result = _bookRepository.FilterBooks(filter);
-
-            return result;
-        }
 
         public Book GetBookById(int Id)
         {
-            var result = _bookRepository.GetBookById(Id);
+            try
+            {
+                var result = _bookRepository.GetBookById(Id);
 
-            return result;
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool InsertBook(Book data)
         {
-            var result = _bookRepository.InsertBook(data);
+            try
+            {
+                var result = _bookRepository.InsertBook(data);
 
-            if (result == 1)
-                return true;
-            else
-                return false;
+                if (result == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool EditBook(Book data)
         {
-            var result = _bookRepository.EditBook(data);
+            try
+            {
+                var result = _bookRepository.EditBook(data);
 
-            if (result == 1)
-                return true;
-            else
-                return false;
+                if (result == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public bool DeleteBook(int Id)
         {
-            var result = _bookRepository.DeleteBook(Id);
+            try
+            {
+                var result = _bookRepository.DeleteBook(Id);
 
-            if (result == 1)
-                return true;
-            else
-                return false;
+                if (result == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
-        
-        public List<Book> GetBookByFilter(string key)
+
+        public List<Book> FilterBooks(string key)
         {
-            var result = _bookRepository.GetBookByFilter(key);
+            try
+            {
+                var result = _bookRepository.GetBookByFilter(key);
 
-            return result;
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
+
+        //TestCoomit
     }
 }
